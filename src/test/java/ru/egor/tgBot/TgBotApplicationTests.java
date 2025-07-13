@@ -10,18 +10,10 @@ import org.yaml.snakeyaml.constructor.Constructor;
 import ru.egor.tgBot.entity.Category;
 import ru.egor.tgBot.entity.Client;
 import ru.egor.tgBot.entity.Product;
-import ru.egor.tgBot.repository.CategoryRepository;
-import ru.egor.tgBot.repository.ClientRepository;
-import ru.egor.tgBot.repository.ProductRepository;
+import ru.egor.tgBot.repository.*;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import java.io.*;
+import java.util.*;
 @SpringBootTest
 class TgBotApplicationTests {
 
@@ -112,7 +104,7 @@ class TgBotApplicationTests {
 		category.setName(yamlCategory.name);
 		category.setParent(parent);
 
-		categoryRepository.save(category); // обязательно до дальнейших действий
+		categoryRepository.save(category);
 		saved.put(category.getName(), category);
 
 		if (yamlCategory.children != null) {
