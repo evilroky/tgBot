@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import ru.egor.tgBot.entity.ClientOrder;
-import ru.egor.tgBot.entity.Product;
 
 import java.util.List;
 

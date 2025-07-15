@@ -19,9 +19,10 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Long
             "WHERE c.id = :clientId")
     List<Product> findAllProductsByClientId(@Param("clientId") Long clientId);
 
-    @Query("SELECT op.product, SUM(op.countProduct) as totalOrdered " +
-            "FROM OrderProduct op " +
-            "GROUP BY op.product " +
-            "ORDER BY totalOrdered DESC")
-    List<Object[]> findTopPopularProducts(Pageable pageable);
+    @Query(value = "SELECT p.* FROM order_product op " +
+            "JOIN product p ON op.product_id = p.id " +
+            "GROUP BY p.id " +
+            "ORDER BY SUM(op.count_product) DESC " +
+            "LIMIT :limit", nativeQuery = true)
+    List<Product> findTopPopularProducts(@Param("limit") int limit);
 }
