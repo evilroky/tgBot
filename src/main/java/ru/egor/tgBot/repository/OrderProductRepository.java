@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import ru.egor.tgBot.entity.ClientOrder;
 import ru.egor.tgBot.entity.OrderProduct;
 import ru.egor.tgBot.entity.Product;
 
@@ -25,4 +26,6 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Long
             "ORDER BY SUM(op.count_product) DESC " +
             "LIMIT :limit", nativeQuery = true)
     List<Product> findTopPopularProducts(@Param("limit") int limit);
+
+    List<OrderProduct> findOrderProductsByClientOrderId(Long clientOrderId);
 }
