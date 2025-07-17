@@ -14,4 +14,7 @@ public interface ClientOrderRepository extends JpaRepository<ClientOrder, Long> 
     @Query("select c from ClientOrder c where c.client.id = :clientId")
     List<ClientOrder> findByClientId(@Param("clientId")Long clientId);
 
+    @Query("select c from ClientOrder c where c.client.id = :clientId and c.status = 1")
+    ClientOrder getClientOrderByClientId(@Param("clientId")Long clientId);
+
 }

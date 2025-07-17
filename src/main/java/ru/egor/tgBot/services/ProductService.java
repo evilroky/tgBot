@@ -20,4 +20,12 @@ public class ProductService {
     public List<Product> findByNameContainingIgnoreCase(String name) {
         return productRepository.findByNameContainingIgnoreCase(name);
     }
+
+    public List<Product> getProductsByCategoryId(Long categoryId){
+        return productRepository.findByCategoryId(categoryId);
+    }
+
+    public Product getProductById(Long id){
+        return productRepository.findById(id).orElse(null);
+    }
 }
